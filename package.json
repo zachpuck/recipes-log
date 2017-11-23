@@ -2,17 +2,17 @@
   "name": "recipes-log",
   "version": "1.0.0",
   "description": "recipes-log",
-  "main": "server.js",
+  "main": "index.js",
   "directories": {
     "lib": "lib",
     "test": "test"
   },
   "scripts": {
     "test": "mocha",
-    "start": "node server.js",
-    "watch": "nodemon server.js",
+    "start": "node index.js",
+    "watch": "nodemon index.js",
     "lint": "eslint **/*.js",
-    "debug": "DEBUG=recipes* nodemon server.js"
+    "debug": "DEBUG=recipes* nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -28,10 +28,13 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "dotenv": "^4.0.0",
+    "expect": "^21.2.1",
     "express": "^4.16.2",
+    "faker": "^4.1.0",
     "http-errors": "^1.6.2",
     "mongoose": "^4.13.2",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "superagent": "^3.8.1"
   },
   "devDependencies": {
     "chai": "^4.1.2",
