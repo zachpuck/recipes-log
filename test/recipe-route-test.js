@@ -19,7 +19,7 @@ describe('testing /api/recipe', () =>{
     let recipe = mockRecipe.createOne();
 
     it('with a valid request, it should respond with status 200', done => {
-      superagent.post(`${url}/api/recipe/create`)
+      superagent.post(`${url}/api/recipes`)
       // resources, favorite, dateCreated, photo
         .send({
           recipeName: `${recipe.recipeName}`, 
@@ -36,7 +36,7 @@ describe('testing /api/recipe', () =>{
     });
 
     it('with a valid request, it should create a recipe', done => {
-      superagent.post(`${url}/api/recipe/create`)
+      superagent.post(`${url}/api/recipes`)
         .send({
           recipeName: `${recipe.recipeName}`, 
           notes: `${recipe.notes}`,
@@ -64,7 +64,7 @@ describe('testing /api/recipe', () =>{
     });
 
     it('with an invalid request, it should respond with status 400', done => {
-      superagent.post(`${url}/api/recipe/create`)
+      superagent.post(`${url}/api/recipes`)
         .send({})
         .end((err, res) => {
           expect(res.status).to.equal(400);
