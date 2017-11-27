@@ -72,4 +72,46 @@ describe('testing /api/recipe', () =>{
         });
     });
   });
+
+  describe('testing GET /api/recipe', () => {
+    it('should fetch all recipes', () => {
+      
+      function checkData(arr) {
+        return arr.map(item => {
+          expect(item._id).to.exist;
+          expect(item.recipeName).to.exist;
+          expect(item.notes).to.exist;
+          expect(item.resources).to.exist;
+          expect(item.favorite).to.exist;
+          expect(item.dateCreated).to.exist;
+          expect(item.photo).to.exist;
+          expect(item.recipeName).to.be.a('string');
+          expect(item.notes).to.be.a('string');
+          expect(item.resources).to.be.a('string');
+          expect(item.favorite).to.be.a('boolean');
+          expect(item.dateCreated).to.be.a('string');
+          expect(item.photo).to.be.a('string');
+        });
+      }
+
+      return mockRecipe.createMany()
+        .then(() => {
+          return superagent.get(`${url}/api/recipes`);
+        })
+        .then(res => {
+          expect(res.body).to.be.an('Array');
+          expect(res.body).to.have.lengthOf(3);
+          expect(res.status).to.equal(200);
+          checkData(res.body);
+        });
+    });
+
+    it('with an invalid route, it should respond with status 404', done => {
+      superagent.post(`${url}/api/recipe`)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+    });
+  });
 });

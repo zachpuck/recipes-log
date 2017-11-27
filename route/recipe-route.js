@@ -10,5 +10,13 @@ module.exports = router => {
       .catch(next);
   });
 
+  router.get('/recipes', (req, res, next) => {
+    Recipe.find({})
+      .then(recipe => {
+        res.json(recipe);
+      })
+      .catch(next);
+  });
+
   return router;
 };
