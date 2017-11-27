@@ -17,17 +17,7 @@ mockRecipe.createOne = () => {
   });
 };
 
-mockRecipe.createMany = () => {
-  // let create1 = await mockRecipe.createOne();
-  // let create2 = await mockRecipe.createOne();
-  // let create3 = await mockRecipe.createOne();
-
-  // let allRecipes = [];
-  // await allRecipes.push(create1, create2, create3);
-  // allRecipes.map(item => {
-  //   item.save();
-  // });
-  
+mockRecipe.createMany = () => { 
   let promises = [
     new Promise(resolve => resolve(mockRecipe.createOne())),
     new Promise(resolve => resolve(mockRecipe.createOne())),
@@ -38,6 +28,5 @@ mockRecipe.createMany = () => {
     .then(data => 
       data.map(item => {
         item.save();
-        // return data;
       }));
 };
